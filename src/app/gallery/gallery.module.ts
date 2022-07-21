@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { CarouselComponent } from './carousel.component';
 import { Gallery } from './gallery.service';
 import { OverlayModule } from './overlay/overlay.module';
+import { GalleryComponent } from './gallery.component';
 
 @NgModule({
     declarations: [
-        CarouselComponent
+        CarouselComponent,
+        GalleryComponent
     ],
     imports: [
         CommonModule,
