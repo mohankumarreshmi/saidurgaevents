@@ -1,74 +1,111 @@
-# Gallery for Angular
+# Sai Durga Events
 
-<img src="https://badgen.net/bundlephobia/min/angular-gallery" />
+A full-stack event management and organiser application for South Indian events, built with **Next.js 14**, **React 18**, **TypeScript**, **Tailwind CSS**, and **Firebase**.
 
-Responsive gallery for Angular with touch screen support.
+## Features
 
-Live demo can be found on [home page](http://ivylab.space/gallery).
+### Client-Facing (Public)
+- **Home** — Hero section, featured event categories, services highlight, testimonials, and CTA
+- **Events** — Browse all event types (weddings, Mehandi, Haldi, house warming, engagements, etc.)
+- **Services** — Full service catalogue (Nadaswaram bands, orchestras, dance troupes, singers, photographers, catering)
+- **Gallery** — Filterable photo gallery with lightbox viewer
+- **Booking** — Multi-step booking form with service selection, submitted to Firestore
+- **About** — Company story, values, and differentiators
+- **Contact** — Contact form with inquiries saved to Firestore
 
-## Installation
+### Admin Panel (Protected)
+- **Login** — Firebase Authentication
+- **Dashboard** — Stats overview (total/pending/confirmed bookings, unread inquiries, gallery count, services)
+- **Bookings** — View, filter, update status, and delete bookings
+- **Services** — Add, edit, activate/deactivate, and delete services
+- **Gallery** — Add/remove gallery images, mark as featured
+- **Inquiries** — View, mark as read, and delete contact form submissions
 
-Install the npm package.
-```
-npm i angular-gallery
-```
-Import module:
-```ts
-import {IvyGalleryModule} from 'angular-gallery';
+## Tech Stack
 
-@NgModule({
-    imports: [IvyGalleryModule]
-})
-```
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 14 (App Router) |
+| UI | React 18 + Tailwind CSS |
+| Language | TypeScript |
+| Database | Firebase Firestore |
+| Auth | Firebase Authentication |
+| Storage | Firebase Storage |
+| Forms | React Hook Form |
+| Notifications | React Hot Toast |
 
-## Usage
-Build your list of thumbnails and open them in full size using the gallery, passing the index of the image as an argument.
+## Getting Started
 
-```ts
-import {Gallery} from 'angular-gallery';
+### 1. Clone & install
 
-constructor(private gallery: Gallery) {}
-
-showGallery(index: number) {
-    let prop = {
-        images: [
-            {path: 'path_to_image_full_image'},
-            ...
-        ],
-        index
-    };
-    this.gallery.load(prop);
-}
-```
-```html
-<img src="path_to_thumbnail" (click)="showGallery(index)">
-```
-
-## Properties
-
-```ts
-index: number
-// The index of the image in the array that will be displayed when the gallery is opened.
-
-minSwipeDistance: number = 50
-// Minimum distance for swipe.
-
-transitionDuration: number = 400
-// Animation duration.
-
-transitionTimingFunction: 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out' | 'linear' = 'ease'
-// Smooth animation function.
-
-counter: boolean = false
-// Show counter.
-
-counterSeparator: string = " / "
-// Counter separator.
-
-arrows: boolean = true
-// Arrows for image navigation.
+```bash
+git clone https://github.com/mohankumarreshmi/saidurgaevents.git
+cd saidurgaevents
+npm install
 ```
 
-## Browser support
+### 2. Configure Firebase
 
-IvyPinch supports the most recent two versions of all major browsers: Chrome (including Android 4.4-10), Firefox, Safari (including iOS 9-13), and Edge.
+1. Create a project at [Firebase Console](https://console.firebase.google.com/)
+2. Enable **Authentication** (Email/Password), **Firestore**, and **Storage**
+3. Copy `.env.example` to `.env.local` and fill in your Firebase config:
+
+```bash
+cp .env.example .env.local
+```
+
+```env
+NEXT_PUBLIC_FIREBASE_API_KEY=...
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=...
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=...
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=...
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=...
+NEXT_PUBLIC_FIREBASE_APP_ID=...
+```
+
+### 3. Create admin user
+
+In Firebase Console → Authentication → Add user with an email and password. Use those credentials to log in at `/admin/login`.
+
+### 4. Run development server
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) to view the client site.  
+Open [http://localhost:3000/admin](http://localhost:3000/admin) for the admin panel.
+
+## Firestore Collections
+
+| Collection | Description |
+|---|---|
+| `bookings` | Customer booking requests |
+| `inquiries` | Contact form submissions |
+| `services` | Event services (CRUD by admin) |
+| `gallery` | Gallery images (CRUD by admin) |
+| `eventCategories` | Event category definitions |
+
+## Event Types Supported
+
+- 💒 Wedding Ceremonies
+- 💍 Engagement Functions
+- 👰 Bride & Groom Functions
+- 🌿 Mehandi Ceremony
+- 🌼 Haldi Ceremony
+- 🏠 House Warming (Griha Pravesh)
+- 🏢 Office Inauguration
+- 🎂 Birthday Celebrations
+- 👶 Baby Shower
+- 🎯 Corporate Events
+
+## Services Offered
+
+- 🎺 Traditional Nadaswaram Band
+- 🎸 Orchestra & Live Band
+- 💃 Classical Dance Troupe
+- 🥁 Folk Dance & Dappu
+- 🎤 Professional Singers
+- 🌸 Floral & Traditional Decor
+- 📸 Photography & Videography
+- 🍽️ South Indian Catering
